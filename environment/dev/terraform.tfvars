@@ -1,8 +1,8 @@
 rg1mapmodule = {
   rg2 = "canada central"
-  rg3 = "canada central"
-  rg4 = "canada central"
-  rg5 = "canada central"
+  # rg3 = "canada central"
+  # rg4 = "canada central"
+  # rg5 = "canada central"
 }
 
 strsatmapmodule= {
@@ -12,12 +12,12 @@ strsatmapmodule= {
   account_replication_type = "LRS"
   account_tier = "Standard"
   }
-    satstr112 = {
-  location = "canada central"
-  resource_group_name = "rg2"
-  account_replication_type = "LRS"
-  account_tier = "Standard"
-  }
+  #   satstr112 = {
+  # location = "canada central"
+  # resource_group_name = "rg2"
+  # account_replication_type = "LRS"
+  # account_tier = "Standard"
+  # }
 }
 vnet1mapmodule= {
   satvnet11 = {
@@ -31,6 +31,11 @@ satsubmapmodule={
  AzureBastionSubnet={
   virtual_network_name = "satvnet11"
   address_prefixes = ["10.0.1.0/24"]
+  resource_group_name = "rg2"
+}
+ satsubnetfornic={
+  virtual_network_name = "satvnet11"
+  address_prefixes = ["10.0.2.0/24"]
   resource_group_name = "rg2"
 }
 }
@@ -58,7 +63,7 @@ satnicmapmodule = {
     resource_group_name ="rg2"
     ip_conf_name = "nicip"
     private_ip_address_allocation = "Dynamic"
-    subname = "AzureBastionSubnet"
+    subname = "satsubnetfornic"
     virtual_network_name = "satvnet11"
   }
 }
@@ -67,7 +72,7 @@ satvmmapmodule = {
   satvm1 = {
   location = "canada central"
   resource_group_name = "rg2"
-  size = "Standard_F2"
+  size = "Standard_D2s_v3"
   admin_username = "admin123"
   admin_password = "admin@123"
   disable_password_authentication = "false"
@@ -75,8 +80,8 @@ satvmmapmodule = {
   caching = "ReadWrite"
   publisher = "Canonical"
   offer = "0001-com-ubuntu-server-jammy"
-  sku = "22-04-lts"
+  sku = "22_04-lts-gen2"
   version = "latest"
-  satnicname = "satnicdataname"
+  satnicname = "satnic1"
   }
 }
